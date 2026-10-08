@@ -544,7 +544,7 @@ body.cur-hot .curdot{opacity:0}
 .acard .p-link{font-size:12.5px;margin-top:10px;border-bottom-width:1.5px}
 @media (max-width:820px){.also{grid-template-columns:1fr}}
 
-/* ---------- mobile: work before the CV ---------- */
+/* ---------- mobile: CV right under "worked on products for", then the work ---------- */
 @media (max-width:940px){
   .page{display:flex;flex-direction:column;gap:26px}
   .rail{display:contents}
@@ -554,11 +554,10 @@ body.cur-hot .curdot{opacity:0}
   .rail .avail{order:4}
   .rail .proof{order:5}
   .rail .logos{order:6}
-  .rail .rail-cta{order:7}
-  .workwrap{order:8}
-  .rail .sec-exp{order:9}
-  .rail .sec-edu{order:10}
-  .rail .rail-cv{order:11}
+  .rail .sec-exp{order:7}
+  .rail .sec-edu{order:8}
+  .rail .rail-cv{order:9}
+  .workwrap{order:10}
 }
 
 /* rail: secondary links under the CV */
@@ -651,23 +650,11 @@ html,body{overflow-x:clip}
   .doodle.doodle{display:none}
 }
 
-/* ---------- case-study figures: let images out of the reading column ---------- */
-.cs figure{
-  width:min(1180px, calc(100vw - 2*var(--pad)));
-  margin-left:50%;transform:translateX(-50%);
-  margin-bottom:18px;
-}
-.cs figcaption{max-width:66ch}
-
-/* captions stay aligned to the reading column, not the wide image */
-.cs figcaption{margin-inline:max(0px, calc((100% - 832px) / 2))}
-
-/* ---------- rail: schedule a call, beside LinkedIn ---------- */
-.rail-cv .btn-call{padding:6px 13px;font-size:13px}
 
 /* ---------- case studies: images fit the reading column, never stretched ---------- */
-.cs figure{width:auto;margin:0 0 18px;transform:none}
-.cs figure img,.cs figure picture,.cs figure video{display:block;width:100%;height:auto}
+.cs figure{width:100%;max-width:100%;margin:0 0 18px;transform:none}
+.cs figure picture{display:block;width:100%}
+.cs figure img,.cs figure video{display:block;width:100%;max-width:100%;height:auto;object-fit:contain}
 .cs figcaption{max-width:66ch;margin-inline:0}
 
 /* ---------- case studies: nav + jump bar run full width ---------- */
