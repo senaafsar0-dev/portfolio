@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Quin AI — rescuing a dashboard nobody could build | Sena Afsar</title>
+<meta name="description" content="An agency shipped a predictive-AI dashboard that couldn't be built and nobody used — not even the internal team. Three decisions that turned it into the product the company works in.">
+<meta name="theme-color" content="#F4F2ED">
+<link rel="canonical" href="https://senaafsar.com/quin-ai.html">
+<meta property="og:title" content="Quin AI — rescuing a dashboard nobody could build">
+<meta property="og:description" content="An agency shipped a predictive-AI dashboard that couldn't be built and nobody used — not even the internal team. Three decisions that turned it into the product the company works in.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://senaafsar.com/quin-ai.html">
+<meta property="og:image" content="https://senaafsar.com/assets/img/quin-before-after.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230047FF'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='18' font-weight='700' fill='%23fff' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#cs">Skip to content</a>
+
+<header class="nav">
+  <nav class="navbar" aria-label="Primary">
+    <a class="sig" href="index.html">SENA<b>.</b>AFSAR</a>
+    <div class="navlinks">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#how">How I work</a>
+    </div>
+    <a class="btn-talk" href="mailto:senaafsar0@gmail.com?subject=Project%20brief">Send me the brief</a>
+  </nav>
+</header>
+
+<main class="cs" id="cs">
+  <div class="csbar">
+    <a class="back" href="index.html#work">← All work</a>
+    <nav class="jump" aria-label="On this page"><a href="#s0">The situation</a><a href="#s1">Decision 01</a><a href="#s2">Decision 02</a><a href="#s3">Decision 03</a><a href="#s4">What I'd take back</a><a href="#result">Result</a></nav>
+  </div>
+  <div class="p-meta"><span class="tag b">AI / SaaS</span><span class="tag">2022 — Now · Lead designer + acting PM</span></div>
+  <h1>The rescue that became the product.</h1>
+  <p class="lede">An outsourced agency delivered a UI that could not be built, on a platform with no users — not customers, and not the company itself. I was brought in to define the product architecture, redesign the dashboard end to end, and get customers running complex AI campaigns <em>without hand-holding</em>.</p>
+  <div class="facts rv">
+    <div><h4>Role</h4><p>Lead UX/UI Designer, acting product manager</p></div>
+    <div><h4>Timeline</h4><p>2022 — 2024 · ongoing as Senior Product Designer</p></div>
+    <div><h4>The core group</h4><p>CTO, lead developer, front-end developer, customer success lead — and me leading the process</p></div>
+    <div><h4>Focus</h4><p>Information architecture · Brand identity · Complex prototyping · Design systems</p></div>
+    <div><h4>Tools</h4><p>Figma &amp; FigJam · Webflow · Jira / Confluence · Microsoft Clarity</p></div>
+  </div>
+
+  <section class="block rv" id="s0">
+    <figure>
+      <img src="assets/img/quin-before.webp" alt="The agency build: a tabbed analytics page with six empty metric cards, every value reading zero." width="1600" height="1167" loading="lazy">
+      <figcaption>Before · the agency build. Six cards of equal weight, none of them answering a question.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/img/quin-after.webp" alt="The rebuild: a live campaign with its status, a week summary of sessions, purchases and incremental revenue, and campaign analytics with session and revenue distribution." width="1600" height="1167" loading="lazy">
+      <figcaption>After · the rebuild. The campaign first, then what it did, then where the money came from.</figcaption>
+    </figure>
+    <div class="step">The situation</div>
+    <h2>A platform nobody opened, including the people who built it</h2>
+    <p>The legacy platform functioned strictly as an internal tool, and even internally it had lost. The team configured everything in the admin panel and then went back to Excel to read the results. Zero customers were using the portal. On top of that, the agency concept accounted for neither the technical constraints nor the people who would use it.</p>
+    <p>The constraint that made it hard: the engine underneath was genuinely sophisticated, and the interface in front of it had been drawn by people who had never watched anyone try to run a campaign. So the first job wasn't design, it was working out what could actually exist. We started as a small group — the CTO, the lead developer, the front-end developer and the customer success lead — to establish what the product really was, and I led that process through user research, competitive analysis and the feature flows that became the baseline everything afterwards was argued against.</p>
+    <div class="chips"><span class="chip">User research</span><span class="chip">Competitive analysis</span><span class="chip">Flow diagrams</span><span class="chip">IA</span></div>
+  </section>
+
+  <section class="block rv" id="s1">
+    <figure>
+      <img src="assets/img/quin-ia.webp" alt="Two information-architecture trees side by side: the agency build with six equally weighted dashboard sections, and the rebuild grouped into Impact, Engagements and Details." width="2000" height="1146" loading="lazy">
+      <figcaption>What moved, and where it went.</figcaption>
+    </figure>
+    <div class="step">Decision 01</div>
+    <h2>Cutting the AI out of the AI product's first release</h2>
+    <p><b>The fork:</b> ship the full vision — live feed, AI-generated insights, the things the company sold itself on — or ship the part a new customer could actually learn in one sitting.</p>
+    <p><b>What I chose:</b> we parked the live feed and the AI-generated insights for V1. Two reasons, and the second one is the honest one: onboarding got dramatically simpler without them, and the workload came down enough that we could actually ship. A rescue that takes another year isn't a rescue.</p>
+    <p><b>What it cost:</b> for a while we couldn't market our best AI features where they belonged — on the dashboard itself. The insights kept going out as separate reports, assembled by the data analytics and customer success teams. That is a real cost: the product was quieter about its own intelligence than the company was, and someone had to do by hand what the interface should have been doing.</p>
+    <div class="chips"><span class="chip">V1 scoping</span><span class="chip">Acting PM</span><span class="chip">Onboarding load</span></div>
+  </section>
+
+  <section class="block rv" id="s2">
+    <figure>
+      <img src="assets/img/quin-opening-still.webp" alt="The Quin AI campaign set-up step: three campaigns in priority order, each with a type, a medium, a live switch and its conditions expanded underneath." width="2400" height="1500" loading="lazy">
+      <figcaption>Campaign set-up: priority order, one-word state, conditions written as sentences.</figcaption>
+    </figure>
+    <figure class="ph">
+      <div class="ph-box">
+        <span class="ph-slot">Slot 06 · Motion — one per case study, maximum</span>
+        <b class="ph-what">The pop-up builder being used: place, configure, preview.</b>
+        <span class="ph-spec">MP4/WebM · 1200×750 · 8–12s · under 4MB · autoplay, muted, loop, playsinline, poster frame</span>
+        <p class="ph-why">A builder is an interaction, and an interaction is the one thing a still cannot argue for.</p>
+      </div>
+      <figcaption>Building a pop-up without filing a ticket.</figcaption>
+    </figure>
+    <div class="step">Decision 02</div>
+    <h2>Building the pop-up builder natively instead of integrating one</h2>
+    <p><b>The fork:</b> bolt on a third-party pop-up tool, or build the builder inside the product.</p>
+    <p><b>What I chose:</b> native. A predictive engine that decides <em>who</em> sees something is worth very little if the <em>what</em> lives in another vendor's dashboard. More to the point, every campaign had been a custom build until then — a developer's time, every time.</p>
+    <p><b>What it cost:</b> two months of design before anything was built, spent making sure the builder covered the needs people had actually been filing custom requests for, rather than the needs we assumed. Then two months of build and testing, and a week to migrate every existing action into the new format and onboard customers onto it. Four months and a migration is not a small bill for a feature nobody had asked for in those words.</p>
+    <p>The rules that came out of it are visible in the screen above: campaign state is one word and one switch, because the ops team scans that list all day; priority is the rule, so the order is shown and the number says who wins; conditions read as sentences — “longer than 3 min”, never a raw range; and a finished step keeps its one-line answer, so nobody reopens it just to check what they chose.</p>
+    <p><b>What it bought:</b> the sales team could answer design questions in the room, confidently, which changed the shape of their calls. Customer success and the front-end developer could put a requested design live themselves — no developer, no custom build, no queue. The feature that cost the most is the one that took the most work off everyone else.</p>
+    <div class="chips"><span class="chip">Pop-up builder</span><span class="chip">Campaign structure</span><span class="chip">No more custom builds</span></div>
+  </section>
+
+  <section class="block rv" id="s3">
+    <figure>
+      <img src="assets/img/quin-brd.webp" alt="A business requirements page: user roles and permissions, with an overview, three role definitions, an access matrix across pages and features, and the business rules." width="2000" height="1500" loading="lazy">
+      <figcaption>One page of the BRD engineering built from.</figcaption>
+    </figure>
+    <div class="step">Decision 03</div>
+    <h2>Writing the documents a startup says it doesn't have time for</h2>
+    <p><b>The fork:</b> keep working the way a startup works — quick calls, quick actions, a fix raised by customer success and shipped the same afternoon — or put structure in and risk slowing all of that down.</p>
+    <p><b>What I chose:</b> both, which was the hard part. Business Requirement Documents and detailed interactive prototypes became the shared reference, but they had to keep pace with a team that fixes things on the day they're reported. The structure only worked because communication with the developers stayed constant — the document and the conversation ran together rather than one replacing the other. I also sat in on QA and testing, so engineering output matched the UX intent and the legal constraints before anything reached a user.</p>
+    <p><b>What it cost:</b> the overhead is real, and it falls on the person writing. The test was whether customer success could still get an urgent fix through in a day. They could — but keeping that true took constant work, and it is the reason the system held rather than becoming paperwork nobody read.</p>
+    <div class="chips"><span class="chip">BRDs</span><span class="chip">Interactive prototypes</span><span class="chip">QA</span><span class="chip">Legal constraints</span></div>
+  </section>
+
+  <section class="block rv" id="s4">
+    <div class="step">What I'd take back</div>
+    <h2>Three years of calling it a side feature</h2>
+    <p>I still work on this product today, which means I have had to live with every decision I made in 2022 — including the one I got wrong for three years.</p>
+    <p>We refused to build the pop-up builder for three years. The argument was always the same, and it sounded sensible every time: it isn't our value proposition, the prediction engine is. That was true and it was beside the point. The pop-up was where the prediction actually met a customer's customer, so it was where the whole product was judged — and every campaign going through a custom build meant friction for sales, for customer success, for engineering, and for anyone trying to move quickly. We were protecting the roadmap from the feature that was shaping the experience.</p>
+    <p>I would build it in year one. Not because it became important later, but because it already was and we were measuring importance by the wrong thing.</p>
+    <div class="chips"><span class="chip">Four years of maintenance</span><span class="chip">Living with it</span></div>
+  </section>
+
+  <section class="block result rv" id="result">
+    <div class="step">The result</div>
+    <h2>A stagnant internal tool, turned into the product the company works in.</h2>
+    <p>When I joined, nobody used the portal. Everything was configured in the admin panel and read in a spreadsheet. After V1 went live, the whole internal team moved into it, the sales team started giving live demos and putting the product in front of prospects during the sale itself, and half of the existing customers were running the dashboard on their own.</p>
+    <p>Since then: customers managing complex AI campaigns without hand-holding, a design system that has absorbed two years of new features without a rewrite, and an award shelf that runs from 2023 to 2026.</p>
+    <div class="nums">
+      <div><b>0 → ~50%</b><span>Of existing customers using the dashboard independently, straight after V1 — from zero</span></div>
+      <div><b>0 → the whole team</b><span>Internal adoption, including live demos in the sales call</span></div>
+      <div><b>2 years, no rewrite</b><span>The design system has absorbed every feature since</span></div>
+    </div>
+  </section>
+
+  <section class="block rv" id="awards">
+    <div class="step">Recognition</div>
+    <p>Bronze &amp; Silver Stevie® 2026 · UK AI Index 2025 · Digital Impact Awards 2025 (with Penti) and 2023 (with Kingfisher Group). Two of those are for work with a named retail client, which matters more than the trophies: it means the thing was used, in production, by someone with something to lose.</p>
+  </section>
+
+  <div class="next">
+    <a href="hirehoot.html">
+      <span class="lbl">Next case study</span>
+      <h3>Hirehoot →</h3>
+    </a>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <span class="mono">© <span id="yr">2026</span> Sena Afsar · Ankara, UTC+3</span>
+    <span class="mono"><a href="mailto:senaafsar0@gmail.com">Email</a> · <a href="assets/Sena-Afsar-CV.pdf" download>Download CV</a></span>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

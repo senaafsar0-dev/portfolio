@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>TeslimX — one thumb, bad signal, direct sunlight | Sena Afsar</title>
+<meta name="description" content="Couriers running 20–100 packages a day out of Excel. Brief to dev-ready handoff in one month: three taps per delivery, contrast audited in both modes, offline-first.">
+<meta name="theme-color" content="#F4F2ED">
+<link rel="canonical" href="https://senaafsar.com/teslimx.html">
+<meta property="og:title" content="TeslimX — one thumb, bad signal, direct sunlight">
+<meta property="og:description" content="Couriers running 20–100 packages a day out of Excel. Brief to dev-ready handoff in one month: three taps per delivery, contrast audited in both modes, offline-first.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://senaafsar.com/teslimx.html">
+<meta property="og:image" content="https://senaafsar.com/assets/img/teslimx-cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230047FF'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='18' font-weight='700' fill='%23fff' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#cs">Skip to content</a>
+
+<header class="nav">
+  <nav class="navbar" aria-label="Primary">
+    <a class="sig" href="index.html">SENA<b>.</b>AFSAR</a>
+    <div class="navlinks">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#how">How I work</a>
+    </div>
+    <a class="btn-talk" href="mailto:senaafsar0@gmail.com?subject=Project%20brief">Send me the brief</a>
+  </nav>
+</header>
+
+<main class="cs" id="cs">
+  <div class="csbar">
+    <a class="back" href="index.html#work">← All work</a>
+    <nav class="jump" aria-label="On this page"><a href="#s0">The situation</a><a href="#s1">Decision 01</a><a href="#s2">Decision 02</a><a href="#s3">Decision 03</a><a href="#s4">One month</a><a href="#result">Result</a></nav>
+  </div>
+  <div class="p-meta"><span class="tag b">Mobile / Logistics</span><span class="tag">2025 · 1 month · 0 → 1</span></div>
+  <h1>One thumb. Bad signal. Direct sunlight.</h1>
+  <p class="lede">Couriers were running daily routes of 20–100 packages out of fragmented Excel sheets and a dashboard never meant for phones. I designed the app that replaced all of it — <em>from a raw PRD to a dev-ready library in one month</em>.</p>
+  <div class="facts rv">
+    <div><h4>Role</h4><p>Product Designer — Das Mione, my design studio</p></div>
+    <div><h4>Timeline</h4><p>2025 · 1 month, brief to handoff</p></div>
+    <div><h4>Focus</h4><p>Mobile ergonomics · High-contrast UI · Offline-first · Design systems</p></div>
+    <div><h4>Tools</h4><p>Figma · Figma Motion · Prototyping</p></div>
+  </div>
+
+  <section class="block rv" id="s0">
+    <div class="step">The situation</div>
+    <h2>The brief wasn't an app, it was ergonomics</h2>
+    <p>A courier holds a phone in one hand and a parcel in the other, in a moving vehicle, in glare, sometimes with no signal at all. Every requirement in the PRD had to survive that, and the ones that couldn't were the wrong requirements.</p>
+    <p>One month, brief to handoff. Three decisions came out of the physical reality rather than a pattern library, and each one is falsifiable — you can check them against the screens.</p>
+    <div class="chips"><span class="chip">Field constraints</span><span class="chip">PRD translation</span><span class="chip">1 month</span></div>
+  </section>
+
+  <section class="block rv" id="s1">
+    <figure>
+      <img src="assets/img/teslimx-three-tap.webp" alt="Four courier screens in sequence: the job list with Scan package, the job detail with Deliver, the verification screen with the code entered and Complete delivery, and the delivered confirmation. Each tap is numbered." width="1800" height="1200" loading="lazy">
+      <figcaption>Any delivery flow, start to done, in three taps.</figcaption>
+    </figure>
+    <div class="step">Decision 01</div>
+    <h2>Three taps, enforced as a business rule</h2>
+    <p><b>The fork:</b> treat tap count as a design aspiration, or make it a rule the PRD has to obey.</p>
+    <p><b>What I chose:</b> a rule. A courier completes any delivery flow in a maximum of three taps, enforced from the wireframes on. It held because we worked for it rather than hoped for it — every flow was drawn out in detail and tested against the rule, and anything that wouldn't fit got rethought at the flow stage rather than argued about at the UI stage. The camera scan between tap one and tap two is automatic, which is part of why the count works.</p>
+    <div class="chips"><span class="chip">3-tap rule</span><span class="chip">Thumb zone</span><span class="chip">Detailed user flows</span></div>
+  </section>
+
+  <section class="block rv" id="s2">
+    <figure>
+      <img src="assets/img/teslimx-contrast.webp" alt="The same courier screens in light and dark mode side by side, with measured contrast ratios printed next to the text and the primary button." width="2400" height="1350" loading="lazy">
+      <figcaption>Audited, then fixed: measured ratios in both modes, not an assumption.</figcaption>
+    </figure>
+    <div class="step">Decision 02</div>
+    <h2>Designing for glare and for 2am</h2>
+    <p><b>The fork:</b> ship light mode and add dark later, which is what the timeline wanted.</p>
+    <p><b>What I chose:</b> both, in parallel. Primary CTAs sit in the bottom third for one-handed thumb reach, and the light and dark treatments are precise alterations of the same hierarchy rather than an inverted palette — because a courier switches between them inside a single shift.</p>
+    <p>Then I measured it rather than claiming it. Several pairs that looked fine failed on test: secondary distance text, the delayed and redelivery tags, and the blues used on the dark background. Those were corrected to pass AA; the orange primary button passes as large text, which is the honest version of the claim.</p>
+    <p><b>What it cost:</b> every component had to be specified twice inside a one-month window, which is where most of the month went.</p>
+    <div class="chips"><span class="chip">Light + dark</span><span class="chip">WCAG AA, audited</span><span class="chip">Sunlight legibility</span></div>
+  </section>
+
+  <section class="block rv" id="s3">
+    <figure>
+      <video poster="assets/video/teslimx-offline-sync-poster.webp" width="1200" height="750" autoplay muted loop playsinline preload="metadata" aria-label="A delivery is completed while the app is offline, the confirmation says it is waiting to sync, then the connection returns and the delivery syncs.">
+        <source src="assets/video/teslimx-offline-sync.webm" type="video/webm">
+        <source src="assets/video/teslimx-offline-sync.mp4" type="video/mp4">
+        <img src="assets/video/teslimx-offline-sync.webp" alt="A delivery is completed while the app is offline, the confirmation says it is waiting to sync, then the connection returns and the delivery syncs." width="1200" height="750" loading="lazy">
+      </video>
+      <figcaption>Finish the delivery now, reconcile when the signal comes back.</figcaption>
+    </figure>
+    <div class="step">Decision 03</div>
+    <h2>Offline-first, not offline-tolerant</h2>
+    <p><b>The fork:</b> block the flow when the connection drops, or let the courier finish and reconcile afterwards.</p>
+    <p><b>What I chose:</b> finish first. The app had to keep working in a basement, a lift, or a dead zone on the ring road, so the data syncs around the courier rather than the courier waiting for the data.</p>
+    <p><b>What it cost:</b> a long run of conversations with the PM and the developers about what could actually be cut. Which screens still work with no connection and which genuinely can't, what can be held on the device, how delivery codes and QR confirmation behave when nothing can be checked against a server. The design problem underneath all of it was confidence: a courier should never have to wonder whether the delivery they just completed counted. So every queued action says so plainly, and nothing waits on a spinner that may never resolve.</p>
+    <div class="chips"><span class="chip">Offline-first sync</span><span class="chip">Queued states</span><span class="chip">QR / delivery codes</span></div>
+  </section>
+
+  <section class="block rv" id="s4">
+    <figure>
+      <img src="assets/img/teslimx-library.webp" alt="Four documentation pages on an orange stage: the icon set, the type scale, form components across their states, and the same forms in dark mode." width="2400" height="1200" loading="lazy">
+      <figcaption>What engineering received on day one.</figcaption>
+    </figure>
+    <div class="step">One month</div>
+    <h2>Why the deadline held</h2>
+    <p>A mobile component library from the ground up — custom iconography, scalable typography, standardised form components in both modes — handed over meeting the accessibility standard before a single ticket was written.</p>
+    <p>One month only worked because of where the time went. It was a dense run of meetings and fast turnarounds, but nothing moved to UI until the wireframes were agreed and the flows had been worked through in detail. Every edge case we could name was named while it was still cheap to change. Changing a detail after the UI is drawn and the components are built costs days; changing it on a wireframe costs an hour. That sequencing is the whole reason the month was enough.</p>
+    <div class="chips"><span class="chip">Custom icons</span><span class="chip">Type scale</span><span class="chip">Dev handoff</span></div>
+  </section>
+
+  <section class="block result rv" id="result">
+    <div class="step">The result</div>
+    <h2>Replaced spreadsheets with something that survives the road.</h2>
+    <p>Couriers who had been reconciling 20–100 packages a day across spreadsheets now work from a single list that survives a dead zone and syncs when signal returns. Manual entry is gone.</p>
+    <div class="nums"><div><b>3 taps max</b><span>Any complete delivery flow</span></div><div><b>WCAG AA</b><span>Audited and fixed, light and dark</span></div><div><b>1 month</b><span>Raw PRD to dev-ready handoff</span></div></div>
+  </section>
+
+  <div class="next">
+    <a href="ojo-candles.html">
+      <span class="lbl">Next case study</span>
+      <h3>Ojo Premium Candles →</h3>
+    </a>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <span class="mono">© <span id="yr">2026</span> Sena Afsar · Ankara, UTC+3</span>
+    <span class="mono"><a href="mailto:senaafsar0@gmail.com">Email</a> · <a href="assets/Sena-Afsar-CV.pdf" download>Download CV</a></span>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
