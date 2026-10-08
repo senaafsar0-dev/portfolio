@@ -661,3 +661,27 @@ html,body{overflow-x:clip}
 
 /* captions stay aligned to the reading column, not the wide image */
 .cs figcaption{margin-inline:max(0px, calc((100% - 832px) / 2))}
+
+/* ---------- rail: schedule a call, beside LinkedIn ---------- */
+.rail-cv .btn-call{padding:6px 13px;font-size:13px}
+
+/* ---------- case studies: images fit the reading column, never stretched ---------- */
+.cs figure{width:auto;margin:0 0 18px;transform:none}
+.cs figure img,.cs figure picture,.cs figure video{display:block;width:100%;height:auto}
+.cs figcaption{max-width:66ch;margin-inline:0}
+
+/* ---------- case studies: nav + jump bar run full width ---------- */
+.cs-page header.nav{
+  top:0;padding:12px 14px;
+  background:var(--paper);
+}
+.cs-page .navbar{box-shadow:none}
+.cs-page .csbar{
+  top:78px;
+  background:var(--paper);
+  border-bottom:0;
+  /* paint the bar edge to edge while its content stays in the column */
+  box-shadow:0 0 0 100vmax var(--paper), 0 1px 0 100vmax var(--line);
+  clip-path:inset(0 -100vmax -1px);
+}
+.cs-page .csbar::before{display:none}
