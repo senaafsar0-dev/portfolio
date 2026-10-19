@@ -684,3 +684,7 @@ html,body{overflow-x:clip}
 }
 .cs-page .csbar::before{display:none}
 .cs figure.fit img{width:100%}
+
+/* ---------- rail: studio link in the experience list ---------- */
+.entry .studio{color:#C65688;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.entry .studio:hover{color:var(--blue)}
