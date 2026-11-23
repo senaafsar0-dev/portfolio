@@ -64,12 +64,13 @@ if ('IntersectionObserver' in window) {
     }
   }, {threshold: .25});
   $$('.stage[data-m]').forEach(s => motionObs.observe(s));
-
-  const vidObs = new IntersectionObserver(es => {
-    for (const e of es) { const v = e.target; if (e.isIntersecting && !reduced()) { const p = v.play(); if (p) p.catch(() => {}); } else v.pause(); }
-  }, {threshold: .3});
-  $$('video').forEach(v => vidObs.observe(v));
 }
+
+/* videos play only while on screen */
+const vidObs = 'IntersectionObserver' in window ? new IntersectionObserver(es => {
+  for (const e of es) { const v = e.target; if (e.isIntersecting && !reduced()) { const p = v.play(); if (p) p.catch(() => {}); } else v.pause(); }
+}, {threshold: .3}) : {observe() {}};
+$$('video').forEach(v => vidObs.observe(v));
 
 /* ---------- case phase bar: scrollspy + progress ---------- */
 let spy = null;
@@ -103,6 +104,81 @@ document.addEventListener('pointermove', e => {
   const t = e.target.closest && e.target.closest('.bt.fill'); if (!t) return;
   const r = t.getBoundingClientRect(); t.style.setProperty('--mx', (e.clientX - r.left) + 'px'); t.style.setProperty('--my', (e.clientY - r.top) + 'px');
 }, {passive: true});
+
+/* ---------- snapshots: justified contact sheet + lightbox ---------- */
+const sheet = $('#sheet');
+if (sheet && window.SNAPS) {
+  const SNAPS = window.SNAPS.map(([t, k, ar, bg, p, pad], i) => ({t, k, ar, bg, p, pad: !!pad, i,
+    src: t === 'v' ? `assets/video/${k}.mp4` : `assets/img/snap/${k}.webp`, poster: t === 'v' ? `assets/video/${k}-poster.webp` : ''}));
+  let filter = 'all', list = SNAPS, lastW = 0;
+  const tileHTML = s => `<button type="button" class="st-t${s.pad ? ' pad' : ''}" data-i="${s.i}" style="--ar:${s.ar};--tbg:${s.bg};--rt:${s.i % 2 ? .6 : -.6}deg${s.k.startsWith('f4') ? ';--pd:9% 14%' : s.pad ? ';--pd:5% 7%' : ''}" aria-label="${s.p} — ${s.t === 'v' ? 'play animation' : 'view screen'}">${s.t === 'v' ? `<video muted loop playsinline preload="metadata" poster="${s.poster}" src="${s.src}"></video><span class="pl"></span>` : `<img src="${s.src}" alt="" loading="lazy" decoding="async">`}</button>`;
+  const tileObs = 'IntersectionObserver' in window ? new IntersectionObserver(es => {
+    for (const e of es) if (e.isIntersecting) { const el = e.target; setTimeout(() => el.classList.add('in'), (+el.dataset.k || 0) * 70); tileObs.unobserve(el); }
+  }, {rootMargin: '0px 0px -6% 0px'}) : {observe: el => el.classList.add('in'), unobserve() {}};
+  const build = () => {
+    const W = sheet.clientWidth; if (!W) return; lastW = W;
+    const gap = W < 600 ? 8 : 12, H = W < 600 ? 200 : W < 1000 ? 280 : 360;
+    list = SNAPS.filter(s => filter === 'all' || s.t === filter);
+    const rows = []; let row = [], sum = 0;
+    for (const s of list) { row.push(s); sum += s.ar; if (sum * H + gap * (row.length - 1) >= W * .94) { rows.push(row); row = []; sum = 0; } }
+    if (row.length) { const t = row.reduce((x, s) => x + s.ar, 0); if (rows.length && t * H < W * .7) rows[rows.length - 1].push(...row); else rows.push(row); }
+    sheet.innerHTML = rows.map((r, ri) => {
+      const last = ri === rows.length - 1, tot = r.reduce((a, s) => a + s.ar, 0), fill = !last || tot * H > W * .7;
+      return `<div class="srow"${fill ? '' : ` style="width:${Math.round(tot * H + gap * (r.length - 1))}px;max-width:100%"`}>${r.map(tileHTML).join('')}</div>`;
+    }).join('');
+    $$('.srow', sheet).forEach(r => $$('.st-t', r).forEach((t, j) => { t.dataset.k = j; tileObs.observe(t); }));
+    $$('video', sheet).forEach(v => vidObs.observe(v));
+    const nv = list.filter(s => s.t === 'v').length;
+    $('#sn-count').innerHTML = `<b>${list.length}</b> frames · <b>${nv}</b> in motion`;
+  };
+  $$('.sn-seg button').forEach(b => b.addEventListener('click', () => { filter = b.dataset.f; $$('.sn-seg button').forEach(x => x.setAttribute('aria-pressed', x === b)); build(); }));
+  build();
+  addEventListener('resize', () => { if (Math.abs(sheet.clientWidth - lastW) > 40) build(); }, {passive: true});
+
+  /* lightbox */
+  const lb = $('#lb'), lbs = $('#lb-stage'); let lbI = -1, lbRaf = 0, lbLast = null;
+  const fit = s => { const vw = innerWidth, vh = innerHeight, mw = Math.min(vw - (vw < 600 ? 24 : 180), 1500), mh = vh - (vw < 600 ? 150 : 130); let w = mw, h = w / s.ar; if (h > mh) { h = mh; w = h * s.ar; } lbs.style.width = Math.round(w) + 'px'; lbs.style.height = Math.round(h) + 'px'; };
+  const open = idx => {
+    const s = list[idx]; if (!s) return; lbI = idx; cancelAnimationFrame(lbRaf);
+    lbs.className = 'lb-stage' + (s.pad ? ' pad' : ''); lbs.style.setProperty('--tbg', s.bg); lbs.style.setProperty('--pd', s.k.startsWith('f4') ? '4% 10%' : s.pad ? '3% 5%' : '0');
+    lbs.innerHTML = s.t === 'v' ? `<video autoplay muted loop playsinline src="${s.src}" poster="${s.poster}"></video><div class="lb-bar"><i></i></div>` : `<img src="${s.src}" alt="${s.p} screen">`;
+    lbs.style.animation = 'none'; void lbs.offsetWidth; lbs.style.animation = '';
+    fit(s);
+    $('#lb-meta').innerHTML = `<b>${String(idx + 1).padStart(2, '0')}</b><span>/ ${String(list.length).padStart(2, '0')}</span><span>${s.p}</span>`;
+    const v = $('video', lbs);
+    if (v) {
+      const p = v.play(); if (p) p.catch(() => {});
+      const bar = $('.lb-bar i', lbs), tick = () => { if (v.duration) bar.style.width = (v.currentTime / v.duration * 100) + '%'; lbRaf = requestAnimationFrame(tick); }; tick();
+      v.addEventListener('click', () => v.paused ? v.play() : v.pause());
+    }
+    if (!lb.classList.contains('on')) { lbLast = document.activeElement; lb.classList.add('on'); document.body.style.overflow = 'hidden'; $('.lb-x').focus({preventScroll: true}); }
+  };
+  const close = () => { lb.classList.remove('on'); cancelAnimationFrame(lbRaf); lbs.innerHTML = ''; document.body.style.overflow = ''; lbI = -1; if (lbLast) lbLast.focus({preventScroll: true}); };
+  const step = d => open((lbI + d + list.length) % list.length);
+  sheet.addEventListener('click', e => { const t = e.target.closest('.st-t'); if (t) open(list.findIndex(s => s.i === +t.dataset.i)); });
+  $('.lb-x').addEventListener('click', close); $('.lb-p').addEventListener('click', () => step(-1)); $('.lb-n').addEventListener('click', () => step(1));
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  document.addEventListener('keydown', e => { if (lbI < 0) return; if (e.key === 'Escape') close(); else if (e.key === 'ArrowRight') step(1); else if (e.key === 'ArrowLeft') step(-1); });
+  addEventListener('resize', () => { if (lbI > -1) fit(list[lbI]); });
+  let x0 = null;
+  lbs.addEventListener('pointerdown', e => { x0 = e.clientX; });
+  lbs.addEventListener('pointerup', e => { if (x0 !== null && Math.abs(e.clientX - x0) > 50) step(e.clientX < x0 ? 1 : -1); x0 = null; });
+
+  /* a cursor that follows over the frames */
+  const cur = $('#sn-cur');
+  if (cur && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    $('.snap').classList.add('cur');
+    let cx = 0, cy = 0, tx = 0, ty = 0, raf = 0;
+    const loop = () => { cx += (tx - cx) * .22; cy += (ty - cy) * .22; cur.style.translate = `${cx}px ${cy}px`; raf = requestAnimationFrame(loop); };
+    document.addEventListener('pointermove', e => {
+      tx = e.clientX; ty = e.clientY; const t = e.target.closest && e.target.closest('.st-t');
+      if (t) {
+        cur.innerHTML = $('video', t) ? '<svg viewBox="0 0 18 18"><path d="M5 3v12l10-6z" fill="currentColor"/></svg>' : '<svg viewBox="0 0 18 18"><path d="M9 3v12M3 9h12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
+        if (!raf) { cx = tx; cy = ty; loop(); } cur.classList.add('on');
+      } else cur.classList.remove('on');
+    }, {passive: true});
+  }
+}
 
 /* ---------- copy email ---------- */
 const cp = $('#copy');

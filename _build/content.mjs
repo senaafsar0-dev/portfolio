@@ -191,3 +191,25 @@ function caseHTML(c,idx){
 }
 
 export {CARDS,TK,CASES,figHTML,caseHTML,pad};
+
+// Snapshots page: [type v|i, file key, aspect ratio, tile background, project, padded?]
+const SNAPS=[
+ ['v','snap-ceers-hero',1.6,'#f6f7ff',"Ceer's"],['i','f4-board',.6,'#0057ff','FIND4',1],
+ ['i','k5',1.986,'#11402f','Kese'],['v','snap-ruvio-crew',1.6,'#f1e7ee','Ruvio'],
+ ['v','snap-ruvio-anim03',.56,'#ffffff','Ruvio',1],['i','quinweb',1.986,'#fbfbff','Quin AI'],['v','snap-ruvio-anim09',.56,'#ffffff','Ruvio',1],
+ ['i','k1',2.13,'#0e3b2e','Kese'],['v','quin-before-after',1.6,'#f4f2ed','Quin AI'],
+ ['i','n1',1.778,'#cfe5e4','Nabız'],['i','k4',1.986,'#11402f','Kese'],
+ ['v','snap-find4',1.6,'#0057ff','FIND4'],['i','hhstates',1.986,'#eef1ff','Hirehoot'],
+ ['i','ruvio-lineup',2.4,'#5b2a4e','Ruvio'],['i','k3',1.986,'#11402f','Kese'],
+ ['v','ruvio-approval-flow',1.6,'#f4f2ed','Ruvio'],['i','axa',1.97,'#01061c','AXA Sigorta'],
+ ['i','pusula',2.08,'#f3f1ec','Pusula'],['v','quin-popup-builder',1.6,'#f4f2ed','Quin AI'],
+ ['i','ruvio-expr',2.8,'#f1e7ee','Ruvio'],['v','snap-ruvio-anim01',1.655,'#1c1c1c','Ruvio'],
+ ['i','k7',1.986,'#11402f','Kese'],['i','n4',1.778,'#cfe5e4','Nabız'],
+ ['v','hirehoot-overrule',1.6,'#f4f2ed','Hirehoot'],['i','spiqa',1.98,'#1e1a22','Spiqa'],
+ ['i','txonb',1.986,'#1b1464','TeslimX'],['v','teslimx-offline-sync',1.6,'#f4f2ed','TeslimX'],
+ ['i','n6',1.986,'#f0f2f2','Nabız'],['i','k6',1.986,'#11402f','Kese'],
+ ['i','quinld',1.986,'#fbfbff','Quin AI'],['v','ruvio-compliance',1.653,'#f4f2ed','Ruvio'],
+ ['i','txhome',1.986,'#1b1464','TeslimX'],['i','n2',1.778,'#cfe5e4','Nabız'],
+ ['i','k2',2.01,'#0e3b2e','Kese'],['i','n5',1.778,'#ddedec','Nabız'],['i','f4-home',.6,'#0057ff','FIND4',1]
+];
+export {SNAPS};

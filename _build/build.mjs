@@ -1,9 +1,9 @@
 // Generates index.html, the six case-study pages and 404.html from content.mjs.
 // Run from the repo root:  node _build/build.mjs
 import {writeFileSync} from 'node:fs';
-import {CARDS, TK, CASES, caseHTML} from './content.mjs';
+import {CARDS, TK, CASES, caseHTML, SNAPS} from './content.mjs';
 
-const V = '20261123b'; // bump to bust the CSS/JS cache after edits
+const V = '20261123c'; // bump to bust the CSS/JS cache after edits
 const SITE = 'https://senaafsar.com';
 const MAIL = 'senaafsar0@gmail.com';
 
@@ -43,10 +43,10 @@ ${noindex ? '<meta name="robots" content="noindex">' : `<meta name="description"
 </head>`;
 }
 
-const nav = (home, base = '') => `<header class="nav" id="top">
+const nav = (home, base = '', page = '') => `<header class="nav" id="top">
   <a class="sig" href="${home ? '#top' : base + 'index.html'}" aria-label="Sena Afsar, home">SENA<b>.</b>AFSAR</a>
-  <a class="lk" href="${home ? '' : base + 'index.html'}#work">Work</a>
-  <a class="lk hw" href="${home ? '' : base + 'index.html'}#how">How I work</a>
+  <a class="lk wk" href="${home ? '' : base + 'index.html'}#work">Work</a>
+  <a class="lk sn${page === 'snap' ? ' on' : ''}" href="${base}snapshots.html"${page === 'snap' ? ' aria-current="page"' : ''}>Snapshots</a>
   <a class="btn-talk" href="${home ? '' : base + 'index.html'}#contact">Send me the brief</a>
 </header>`;
 
@@ -149,6 +149,44 @@ ${caseHTML(c, idx)}
 ${tail()}`;
   writeFileSync(`${c.id}.html`, html);
 });
+
+
+/* ---------------- snapshots (the contact sheet is laid out in the browser, see site.js) ---------------- */
+const crew = ['mira', 'atlas', 'kaan', 'ruvio', 'nil', 'sena', 'ela'].map(n => `<img src="assets/img/snap/ch-${n}.webp" alt="">`).join('');
+const snapPage = `${head({title: 'Snapshots | Sena Afsar', desc: 'A contact sheet of screens and motion from my product, brand and website work — Quin AI, Ruvio, Hirehoot, TeslimX, Ceer\'s, FIND4 and more.', path: 'snapshots.html', image: 'home-ruvio'})}
+<body class="dark-nav">
+<a class="skip" href="#sheet">Skip to the frames</a>
+${nav(false, '', 'snap')}
+<main class="snap">
+  <div class="sn-wrap">
+    <div class="sn-head">
+      <h1 class="sn-title"><span>Snap</span><span>shots</span><i class="dot"></i></h1>
+      <div class="sn-side">
+        <div class="crew" aria-hidden="true">${crew}</div>
+        <div class="sn-count" id="sn-count"></div>
+        <div class="sn-seg" role="group" aria-label="Filter frames">
+          <button type="button" data-f="all" aria-pressed="true">All</button>
+          <button type="button" data-f="v" aria-pressed="false"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5v9l7.5-4.5z" fill="currentColor"/></svg>Motion</button>
+          <button type="button" data-f="i" aria-pressed="false"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="1" y="2" width="10" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Screens</button>
+        </div>
+      </div>
+    </div>
+    <div class="sheet" id="sheet"></div>
+    <footer class="sn-foot"><a href="index.html#work">← Back to the case studies</a><span>© 2026 Sena Afsar · <a href="mailto:${MAIL}">${MAIL}</a></span></footer>
+  </div>
+  <div class="sn-cur" id="sn-cur" aria-hidden="true"></div>
+</main>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Frame viewer">
+  <div class="lb-stage" id="lb-stage"></div>
+  <button class="lb-btn lb-x" type="button" aria-label="Close"><svg viewBox="0 0 20 20"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  <button class="lb-btn lb-p" type="button" aria-label="Previous frame"><svg viewBox="0 0 20 20"><path d="M12.5 4l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="lb-btn lb-n" type="button" aria-label="Next frame"><svg viewBox="0 0 20 20"><path d="M7.5 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <div class="lb-meta" id="lb-meta"></div>
+  <div class="lb-hint">← → · ESC</div>
+</div>
+<script>window.SNAPS=${JSON.stringify(SNAPS)};</script>
+${tail()}`;
+writeFileSync('snapshots.html', snapPage);
 
 /* ---------------- 404 (served from any path, so links are root-absolute) ---------------- */
 const nf = `${head({title: 'Not found — Sena Afsar', noindex: true, base: '/'})}
