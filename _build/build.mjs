@@ -3,7 +3,7 @@
 import {writeFileSync} from 'node:fs';
 import {CARDS, TK, CASES, caseHTML, SNAPS} from './content.mjs';
 
-const V = '20261123d'; // bump to bust the CSS/JS cache after edits
+const V = '20261123e'; // bump to bust the CSS/JS cache after edits
 const SITE = 'https://senaafsar.com';
 const MAIL = 'senaafsar0@gmail.com';
 
@@ -56,7 +56,7 @@ const tail = (base = '') => `<script src="${base}assets/site.js?v=${V}"></script
 `;
 
 /* ---------------- home ---------------- */
-const cards = CARDS.map(c => `<a class="pcard rv" href="${c.id}.html"><div class="shot"><img src="assets/img/${c.img}.webp" alt="${c.h} product screens" width="2000" height="802" loading="lazy"></div><div class="pbody"><div class="tags">${c.tags.map((t, i) => `<span class="tag${i ? '' : ' b'}">${t}</span>`).join('')}</div><h3>${c.h}</h3><p class="pdesc">${c.p}</p><div class="pout${c.three ? ' three' : ''}">${c.o.map(o => `<div><b>${o[0]}</b><span>${o[1]}</span></div>`).join('')}</div><span class="plink">Read the case study <i>↗</i></span></div></a>`).join('\n        ');
+const cards = CARDS.map(c => `<a class="pcard rv" href="${c.id}.html"><div class="shot"><img src="assets/img/${c.img}.webp?v=${V}" alt="${c.h} product screens" width="1600" height="642" loading="lazy"></div><div class="pbody"><div class="tags">${c.tags.map((t, i) => `<span class="tag${i ? '' : ' b'}">${t}</span>`).join('')}</div><h3>${c.h}</h3><p class="pdesc">${c.p}</p><div class="pout${c.three ? ' three' : ''}">${c.o.map(o => `<div><b>${o[0]}</b><span>${o[1]}</span></div>`).join('')}</div><span class="plink">Read the case study <i>↗</i></span></div></a>`).join('\n        ');
 const one = TK.map((t, i) => `<span>${t}</span><i class="${i == 2 ? 'c' : ''}">✳</i>`).join('');
 
 const home = `${head({title: 'Sena Afsar — Product designer for AI products', desc: 'I rescue AI products that shipped wrong and leave a design system the team can keep building on. First designer at Quin AI. Available for 0→1 builds, product rescues and design-system work.', path: '', image: 'home-quin'})}
