@@ -87,7 +87,7 @@ ${nav(true)}
         <div class="it"><span class="when">2017 — 2022</span><span class="what">BA Industrial Design<span class="where">Middle East Technical University</span></span></div>
         <div class="it"><span class="when">2023</span><span class="what">AI Product Management<span class="where">Product HQ</span></span></div>
       </div>
-      <div class="cv"><a class="lnk" href="assets/Sena-Afsar-CV.pdf" target="_blank" rel="noopener">Download CV</a><a class="lnk" href="mailto:${MAIL}">Email</a><a class="lnk" href="https://linkedin.com/in/senaafsar" target="_blank" rel="noopener">LinkedIn</a><a class="lnk" href="https://calendly.com/senaafsar0/30min" target="_blank" rel="noopener">Schedule a call</a></div>
+      <div class="cv"><a class="lnk" href="assets/Sena-Afsar-CV.pdf?v=20261123" target="_blank" rel="noopener">Download CV</a><a class="lnk" href="mailto:${MAIL}">Email</a><a class="lnk" href="https://linkedin.com/in/senaafsar" target="_blank" rel="noopener">LinkedIn</a><a class="lnk" href="https://calendly.com/senaafsar0/30min" target="_blank" rel="noopener">Schedule a call</a></div>
     </aside>
 
     <section id="work">
@@ -193,7 +193,7 @@ const nf = `${head({title: 'Not found — Sena Afsar', noindex: true, base: '/'}
 <body class="nf">
 ${nav(false, '/').replace(/index\.html/g, '')}
 <main class="body"><div class="mono" style="font-size:11px;letter-spacing:1.1px;color:var(--mute)">404 · NOT IN THE FILE</div><h1>This page didn't<br>make the cut.</h1><p>Like a V1 feature, it was parked. The work that did ship is one click away.</p><div class="btns"><a class="btn pr" style="background:var(--blue);color:#fff" href="/#work">Back to the work <i>→</i></a></div></main>
-<footer class="foot"><div class="in"><span>© 2026 Sena Afsar · Ankara, UTC+3</span><span><a href="mailto:${MAIL}">Email</a> · <a href="/assets/Sena-Afsar-CV.pdf" target="_blank" rel="noopener">Download CV</a></span></div></footer>
+<footer class="foot"><div class="in"><span>© 2026 Sena Afsar · Ankara, UTC+3</span><span><a href="mailto:${MAIL}">Email</a> · <a href="/assets/Sena-Afsar-CV.pdf?v=20261123" target="_blank" rel="noopener">Download CV</a></span></div></footer>
 ${tail('/')}`;
 writeFileSync('404.html', nf);
 console.log('Built index.html, 404.html and', CASES.length, 'case studies.');

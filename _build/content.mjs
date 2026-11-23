@@ -187,7 +187,7 @@ function caseHTML(c,idx){
    ${c.recog?`<section class="recog tc"><div class="rv"><div class="k">Recognition</div><p>${c.recog}</p></div></section>`:''}
    <div class="next tc"><a href="${next.id}.html"><div class="k">Next case study</div><b>${next.name} <i>→</i></b></a></div>
   </div>
-  <footer class="foot"><div class="in"><span>© 2026 Sena Afsar · Ankara, UTC+3</span><span><a href="mailto:senaafsar0@gmail.com">Email</a> · <a href="assets/Sena-Afsar-CV.pdf" target="_blank" rel="noopener">Download CV</a></span></div></footer>`;
+  <footer class="foot"><div class="in"><span>© 2026 Sena Afsar · Ankara, UTC+3</span><span><a href="mailto:senaafsar0@gmail.com">Email</a> · <a href="assets/Sena-Afsar-CV.pdf?v=20261123" target="_blank" rel="noopener">Download CV</a></span></div></footer>`;
 }
 
 export {CARDS,TK,CASES,figHTML,caseHTML,pad};
