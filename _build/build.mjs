@@ -3,7 +3,7 @@
 import {writeFileSync} from 'node:fs';
 import {CARDS, TK, CASES, caseHTML} from './content.mjs';
 
-const V = '20261123'; // bump to bust the CSS/JS cache after edits
+const V = '20261123b'; // bump to bust the CSS/JS cache after edits
 const SITE = 'https://senaafsar.com';
 const MAIL = 'senaafsar0@gmail.com';
 
@@ -63,9 +63,9 @@ const home = `${head({title: 'Sena Afsar — Product designer for AI products', 
 <body class="home">
 <a class="skip" href="#work">Skip to work</a>
 ${nav(true)}
+<div class="cue" id="cue" aria-hidden="true"><span>SCROLL</span><img src="assets/img/sk-arrow3.svg" alt=""></div>
 
 <main>
-  <div class="cue" id="cue" aria-hidden="true"><span>SCROLL</span><img src="assets/img/sk-arrow3.svg" alt=""></div>
   <div class="hwrap">
     <aside class="rail rv">
       <div class="who">

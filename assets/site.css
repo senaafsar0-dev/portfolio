@@ -36,7 +36,7 @@ img{display:block;max-width:100%}
 .btn-talk:hover{transform:translateY(-2px);box-shadow:0 12px 24px -8px rgba(0,71,255,.8)}
 
 /* ---------- views / transitions ---------- */
-body>main{animation:viewIn .7s var(--ease) both}
+body>main{animation:viewIn .7s var(--ease) backwards}
 .skip{position:absolute;left:12px;top:-60px;z-index:100;padding:10px 14px;border-radius:8px;background:var(--ink);color:#fff;font-size:13px}
 .skip:focus{top:12px}
 @keyframes viewIn{from{opacity:0;transform:translateY(18px)}}
@@ -80,7 +80,7 @@ body>main{animation:viewIn .7s var(--ease) both}
 .cue span{writing-mode:vertical-rl;font:400 9px/1 var(--m);letter-spacing:1.4px;color:var(--mute)}
 .cue img{width:30px;transform:rotate(104deg);animation:bob 1.8s ease-in-out infinite}
 @keyframes bob{50%{translate:0 6px}}
-.cue.hide{opacity:0;transform:translateY(12px);pointer-events:none}
+.cue.hide{opacity:0;transform:translateY(12px);pointer-events:none;visibility:hidden;transition:opacity .6s var(--ease),transform .6s var(--ease),visibility 0s .6s}
 
 .work-h{display:flex;justify-content:space-between;align-items:baseline;padding:7px 10px 0 18px}
 .work-h h2{margin:0;font-weight:500;font-size:15px;letter-spacing:-.1px}
@@ -219,8 +219,6 @@ body>main{animation:viewIn .7s var(--ease) both}
 .fbox.contain>img{object-fit:contain}
 .fbox.top>img{object-position:top}
 .fig .cap{margin:14px 0 0 186px;max-width:640px;font:400 11px/1.55 var(--m);letter-spacing:.2px;color:var(--mute)}
-.chip{position:absolute;left:19px;top:19px;z-index:3;padding:6px 10px;border-radius:6px;background:var(--ink);color:#fff;font:500 11px/14px var(--m);letter-spacing:.2px}
-.chip.live::before{content:"";display:inline-block;width:6px;height:6px;margin-right:7px;border-radius:50%;background:#fff;vertical-align:1px;animation:blink 1.4s infinite}
 @keyframes blink{50%{opacity:.25}}
 .facts{display:flex;flex-wrap:wrap;gap:24px;margin-top:48px}
 .facts>div{width:253px}
@@ -396,7 +394,6 @@ body>main{animation:viewIn .7s var(--ease) both}
   .facts>div{width:100%}
   .ws{padding:12px}.ws .bar{margin:-12px -12px 12px;font-size:9.5px}
   .track span{font-size:24px}
-  .chip{left:10px;top:10px;max-width:calc(100% - 20px);padding:4px 8px;font-size:9.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important;scroll-behavior:auto!important}

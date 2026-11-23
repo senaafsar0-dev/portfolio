@@ -90,9 +90,9 @@ if (links.length) {
   spy();
 }
 
-/* ---------- scroll cue (home): hide once the ticker is in view ---------- */
-const cue = $('#cue'), ticker = $('.ticker-clip');
-const cueCheck = () => { if (cue) cue.classList.toggle('hide', !ticker || ticker.getBoundingClientRect().top < innerHeight); };
+/* ---------- scroll cue (home): fixed, fades out as soon as the page scrolls ---------- */
+const cue = $('#cue');
+const cueCheck = () => { if (cue) cue.classList.toggle('hide', scrollY > 40); };
 cueCheck();
 
 addEventListener('scroll', () => { if (spy) spy(); cueCheck(); }, {passive: true});
