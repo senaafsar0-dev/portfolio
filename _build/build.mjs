@@ -3,7 +3,7 @@
 import {writeFileSync} from 'node:fs';
 import {CARDS, TK, CASES, caseHTML, SNAPS} from './content.mjs';
 
-const V = '20261123e'; // bump to bust the CSS/JS cache after edits
+const V = '20261124'; // bump to bust the CSS/JS cache after edits
 const SITE = 'https://senaafsar.com';
 const MAIL = 'senaafsar0@gmail.com';
 
@@ -152,7 +152,6 @@ ${tail()}`;
 
 
 /* ---------------- snapshots (the contact sheet is laid out in the browser, see site.js) ---------------- */
-const crew = ['mira', 'atlas', 'kaan', 'ruvio', 'nil', 'sena', 'ela'].map(n => `<img src="assets/img/snap/ch-${n}.webp" alt="">`).join('');
 const snapPage = `${head({title: 'Snapshots | Sena Afsar', desc: 'A contact sheet of screens and motion from my product, brand and website work — Quin AI, Ruvio, Hirehoot, TeslimX, Ceer\'s, FIND4 and more.', path: 'snapshots.html', image: 'home-ruvio'})}
 <body class="dark-nav">
 <a class="skip" href="#sheet">Skip to the frames</a>
@@ -162,7 +161,7 @@ ${nav(false, '', 'snap')}
     <div class="sn-head">
       <h1 class="sn-title"><span>Snap</span><span>shots</span><i class="dot"></i></h1>
       <div class="sn-side">
-        <div class="crew" aria-hidden="true">${crew}</div>
+        <div class="crew" id="crew-head" role="group" aria-label="The Ruvio crew — click a character to change its expression"></div>
         <div class="sn-count" id="sn-count"></div>
         <div class="sn-seg" role="group" aria-label="Filter frames">
           <button type="button" data-f="all" aria-pressed="true">All</button>
@@ -172,6 +171,16 @@ ${nav(false, '', 'snap')}
       </div>
     </div>
     <div class="sheet" id="sheet"></div>
+    <section class="sn-crew" aria-labelledby="crew-title">
+      <div class="sn-crew-h">
+        <div>
+          <h2 id="crew-title">Meet the <em>crew.</em></h2>
+          <p>Ruvio's seven agents, drawn as one character system. Seven expressions, one meaning each — every face is a real agent status in the product. Click a character to step through them.</p>
+        </div>
+        <div class="crew-chips" id="crew-faces" role="group" aria-label="Expression for the whole crew"></div>
+      </div>
+      <div class="crew-stage" id="crew-stage"></div>
+    </section>
     <footer class="sn-foot"><a href="index.html#work">← Back to the case studies</a><span>© 2026 Sena Afsar · <a href="mailto:${MAIL}">${MAIL}</a></span></footer>
   </div>
   <div class="sn-cur" id="sn-cur" aria-hidden="true"></div>
@@ -185,6 +194,7 @@ ${nav(false, '', 'snap')}
   <div class="lb-hint">← → · ESC</div>
 </div>
 <script>window.SNAPS=${JSON.stringify(SNAPS)};</script>
+<script src="assets/crew.js?v=${V}"></script>
 ${tail()}`;
 writeFileSync('snapshots.html', snapPage);
 
