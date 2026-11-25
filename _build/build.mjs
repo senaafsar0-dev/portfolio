@@ -3,7 +3,7 @@
 import {writeFileSync} from 'node:fs';
 import {CARDS, TK, CASES, caseHTML, SNAPS} from './content.mjs';
 
-const V = '20261124'; // bump to bust the CSS/JS cache after edits
+const V = '20261125'; // bump to bust the CSS/JS cache after edits
 const SITE = 'https://senaafsar.com';
 const MAIL = 'senaafsar0@gmail.com';
 

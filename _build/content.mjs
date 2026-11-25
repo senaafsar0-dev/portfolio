@@ -192,12 +192,12 @@ function caseHTML(c,idx){
 
 export {CARDS,TK,CASES,figHTML,caseHTML,pad};
 
-// Snapshots page: [type v|i, file key, aspect ratio, tile background, project, padded?]
+// Snapshots page: [type v=video|i=image|h=live HTML in assets/embed, file key, aspect ratio, tile background, project, padded?]
 const SNAPS=[
  ['v','snap-ceers-hero',1.6,'#f6f7ff',"Ceer's"],['i','f4-board',.6,'#0057ff','FIND4',1],
  ['i','k5',1.986,'#11402f','Kese'],['v','snap-ruvio-crew',1.6,'#f1e7ee','Ruvio'],
  ['v','snap-ruvio-anim03',.56,'#ffffff','Ruvio',1],['i','quinweb',1.986,'#fbfbff','Quin AI'],['v','snap-ruvio-anim09',.56,'#ffffff','Ruvio',1],
- ['i','k1',2.13,'#0e3b2e','Kese'],['v','quin-before-after',1.6,'#f4f2ed','Quin AI'],
+ ['i','k1',2.13,'#0e3b2e','Kese'],['h','ceers-vendor-collaboration',1.765,'#ffffff',"Ceer's"],['v','quin-before-after',1.6,'#f4f2ed','Quin AI'],
  ['i','n1',1.778,'#cfe5e4','Nabız'],['i','k4',1.986,'#11402f','Kese'],
  ['v','snap-find4',1.6,'#0057ff','FIND4'],['i','hhstates',1.986,'#eef1ff','Hirehoot'],
  ['i','ruvio-lineup',2.4,'#5b2a4e','Ruvio'],['i','k3',1.986,'#11402f','Kese'],

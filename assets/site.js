@@ -109,16 +109,20 @@ document.addEventListener('pointermove', e => {
 const sheet = $('#sheet');
 if (sheet && window.SNAPS) {
   const SNAPS = window.SNAPS.map(([t, k, ar, bg, p, pad], i) => ({t, k, ar, bg, p, pad: !!pad, i,
-    src: t === 'v' ? `assets/video/${k}.mp4` : `assets/img/snap/${k}.webp`, poster: t === 'v' ? `assets/video/${k}-poster.webp` : ''}));
+    src: t === 'v' ? `assets/video/${k}.mp4` : t === 'h' ? `assets/embed/${k}.html` : `assets/img/snap/${k}.webp`, poster: t === 'v' ? `assets/video/${k}-poster.webp` : ''}));
+  const moving = s => s.t === 'v' || s.t === 'h'; // live HTML pieces count as motion
   let filter = 'all', list = SNAPS, lastW = 0;
-  const tileHTML = s => `<button type="button" class="st-t${s.pad ? ' pad' : ''}" data-i="${s.i}" style="--ar:${s.ar};--tbg:${s.bg};--rt:${s.i % 2 ? .6 : -.6}deg${s.k.startsWith('f4') ? ';--pd:9% 14%' : s.pad ? ';--pd:5% 7%' : ''}" aria-label="${s.p} — ${s.t === 'v' ? 'play animation' : 'view screen'}">${s.t === 'v' ? `<video muted loop playsinline preload="metadata" poster="${s.poster}" src="${s.src}"></video><span class="pl"></span>` : `<img src="${s.src}" alt="" loading="lazy" decoding="async">`}</button>`;
+  const media = s => s.t === 'v' ? `<video muted loop playsinline preload="metadata" poster="${s.poster}" src="${s.src}"></video><span class="pl"></span>`
+    : s.t === 'h' ? `<iframe src="${s.src}?tile" title="${s.p} — live animation" loading="lazy" tabindex="-1" aria-hidden="true"></iframe><span class="pl"></span>`
+    : `<img src="${s.src}" alt="" loading="lazy" decoding="async">`;
+  const tileHTML = s => `<button type="button" class="st-t${s.pad ? ' pad' : ''}" data-i="${s.i}" style="--ar:${s.ar};--tbg:${s.bg};--rt:${s.i % 2 ? .6 : -.6}deg${s.k.startsWith('f4') ? ';--pd:9% 14%' : s.pad ? ';--pd:5% 7%' : ''}" aria-label="${s.p} — ${moving(s) ? 'play animation' : 'view screen'}">${media(s)}</button>`;
   const tileObs = 'IntersectionObserver' in window ? new IntersectionObserver(es => {
     for (const e of es) if (e.isIntersecting) { const el = e.target; setTimeout(() => el.classList.add('in'), (+el.dataset.k || 0) * 70); tileObs.unobserve(el); }
   }, {rootMargin: '0px 0px -6% 0px'}) : {observe: el => el.classList.add('in'), unobserve() {}};
   const build = () => {
     const W = sheet.clientWidth; if (!W) return; lastW = W;
     const gap = W < 600 ? 8 : 12, H = W < 600 ? 200 : W < 1000 ? 280 : 360;
-    list = SNAPS.filter(s => filter === 'all' || s.t === filter);
+    list = SNAPS.filter(s => filter === 'all' || (filter === 'v' ? moving(s) : s.t === filter));
     const rows = []; let row = [], sum = 0;
     for (const s of list) { row.push(s); sum += s.ar; if (sum * H + gap * (row.length - 1) >= W * .94) { rows.push(row); row = []; sum = 0; } }
     if (row.length) { const t = row.reduce((x, s) => x + s.ar, 0); if (rows.length && t * H < W * .7) rows[rows.length - 1].push(...row); else rows.push(row); }
@@ -128,7 +132,7 @@ if (sheet && window.SNAPS) {
     }).join('');
     $$('.srow', sheet).forEach(r => $$('.st-t', r).forEach((t, j) => { t.dataset.k = j; tileObs.observe(t); }));
     $$('video', sheet).forEach(v => vidObs.observe(v));
-    const nv = list.filter(s => s.t === 'v').length;
+    const nv = list.filter(moving).length;
     $('#sn-count').innerHTML = `<b>${list.length}</b> frames · <b>${nv}</b> in motion`;
   };
   $$('.sn-seg button').forEach(b => b.addEventListener('click', () => { filter = b.dataset.f; $$('.sn-seg button').forEach(x => x.setAttribute('aria-pressed', x === b)); build(); }));
@@ -141,7 +145,9 @@ if (sheet && window.SNAPS) {
   const open = idx => {
     const s = list[idx]; if (!s) return; lbI = idx; cancelAnimationFrame(lbRaf);
     lbs.className = 'lb-stage' + (s.pad ? ' pad' : ''); lbs.style.setProperty('--tbg', s.bg); lbs.style.setProperty('--pd', s.k.startsWith('f4') ? '4% 10%' : s.pad ? '3% 5%' : '0');
-    lbs.innerHTML = s.t === 'v' ? `<video autoplay muted loop playsinline src="${s.src}" poster="${s.poster}"></video><div class="lb-bar"><i></i></div>` : `<img src="${s.src}" alt="${s.p} screen">`;
+    lbs.innerHTML = s.t === 'v' ? `<video autoplay muted loop playsinline src="${s.src}" poster="${s.poster}"></video><div class="lb-bar"><i></i></div>`
+      : s.t === 'h' ? `<iframe src="${s.src}" title="${s.p} — live animation"></iframe>`
+      : `<img src="${s.src}" alt="${s.p} screen">`;
     lbs.style.animation = 'none'; void lbs.offsetWidth; lbs.style.animation = '';
     fit(s);
     $('#lb-meta').innerHTML = `<b>${String(idx + 1).padStart(2, '0')}</b><span>/ ${String(list.length).padStart(2, '0')}</span><span>${s.p}</span>`;

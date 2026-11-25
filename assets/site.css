@@ -566,3 +566,5 @@ body.dark-nav{background:#111215}
 @media (max-width:860px){.sn-crew-h{grid-template-columns:1fr}.crew-chips{justify-content:flex-start}}
 @media (max-width:600px){.crew-btn{width:42px}.crew-btn.lead{width:52px}.mate{flex-basis:30%}.crew-stage{padding:32px 8px 24px;border-radius:18px}.crew-chips button{height:32px;padding:0 11px;font-size:12px}}
 @media (prefers-reduced-motion:reduce){.ch *{animation:none!important;transition:none!important}}
+.st-t iframe{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none;background:#fff}
+.lb-stage iframe{display:block;width:100%;height:100%;border:0;background:#fff}
